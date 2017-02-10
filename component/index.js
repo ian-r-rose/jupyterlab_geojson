@@ -16,10 +16,11 @@ export default class Component extends React.Component {
   componentDidMount(): void {
     this.map = Leaflet.map(this.element);
     this.map.scrollWheelZoom.disable();
-    this.tileLayer = Leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution : 'Map data (c) <a href="https://openstreetmap.org">OpenStreetMap</a> contributors',
+    this.tileLayer = Leaflet.tileLayer('http://s3-eu-west-1.amazonaws.com/whereonmars.cartodb.net/celestia_mars-shaded-16k_global/{z}/{x}/{y}.png', {
+      attribution : '',
       minZoom : 0,
-      maxZoom : 18,
+      maxZoom : 5,
+      tms: true
     }).addTo(this.map);
     this.geoJSONLayer = Leaflet.geoJson(this.props.data).addTo(this.map);
     this.map.fitBounds(this.geoJSONLayer.getBounds());
